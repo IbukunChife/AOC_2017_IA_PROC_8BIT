@@ -1,0 +1,571 @@
+--------------------------------------------------
+-- Projeto do Processador ProIA
+-- 
+-- adjitchedidier1@gmail.com
+--------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_arith.all;
+
+entity ProIA is
+	Generic(nBits : integer := 8); -- nBits
+port(
+		clock, reset : in std_logic;
+		
+		out_QStartSystem_flagStartSystem : out std_logic;	
+		out_QStartSystem_flagUltimaInstrucao : out std_logic;
+		
+		out_BDReg_reg_escrito : out std_logic_vector(nBits-7 downto 0);			
+		out_BDReg_dado_escrito : out std_logic_vector(nBits-1 downto 0);
+		out_BDDado_lido_A : out std_logic_vector(nBits-1 downto 0); -- 8 bits
+		out_BDDado_lido_B : out std_logic_vector(nBits-1 downto 0); -- 8 bits	
+		out_BDReg_lido_A : out std_logic_vector(nBits-7 downto 0);
+		out_BDReg_lido_B : out std_logic_vector(nBits-7 downto 0);
+		
+		out_PC_entrada: out std_logic_vector(nBits-1 downto 0); 
+		out_PC_saida: out std_logic_vector(nBits-1 downto 0);
+		out_PC_clock: out std_logic;
+		
+		out_MEM_INST_address: out std_logic_vector(nBits-1 downto 0);
+		out_MEM_INST_data_out: out std_logic_vector(nBits-1 downto 0);
+				
+		out_SUM_A_to_PC_IN_A: out std_logic_vector(nBits-1 downto 0);
+		out_SUM_A_to_PC_IN_B: out std_logic_vector(nBits-1 downto 0);
+		out_SUM_A_to_PC_IN_result: out std_logic_vector(nBits-1 downto 0);
+		
+		out_QAND_A, out_QAND_B : out STD_LOGIC;
+		out_QAND_Result : OUT STD_LOGIC;
+		
+		out_QControl_clock : out std_logic;
+		out_QControl_inst_part_7_4 : out std_logic_vector(nBits-5 downto 0); -- Opcode			
+		out_QControl_DvC : out std_logic;
+		out_QControl_off_instruction : out std_logic;
+		out_QControl_en_data : out std_logic;
+		out_QControl_EscMem : out std_logic;			
+		out_QControl_MemParaReg : out std_logic;
+		out_QControl_UlaOp : out std_logic_vector(nBits-5 downto 0); -- 4 bits
+		out_QControl_LwSwOp : out std_logic;
+		out_QControl_EscReg : out std_logic;
+		out_QControl_Wrt_LRT : out std_logic;
+		out_QControl_FlagPc : out std_logic;
+		out_QControl_enJMP : out std_logic;
+		
+		out_QALU_A, out_QALU_B : out std_logic_vector(nBits-1 downto 0); --input para opera��o        
+		out_QALU_OP : out std_logic_vector(3 downto 0); --opcode para escolha da opera��o
+		out_QALU_zero : out std_logic; -- para a inst. compare (CMP)		
+		out_QALU_overflow : out std_logic; -- identificador de overflow
+		out_QALU_result : out std_logic_vector(nBits-1 downto 0); -- resultado para oper��o efetuada
+				
+		out_QOff_IN_Sel : out std_logic;
+		out_QOff_data : out std_logic_vector(nBits-1 downto 0); -- 8 bits
+		out_QOff_instruction : out std_logic_vector(nBits-1 downto 0); -- 8 bits
+		
+		out_Clock_System : out std_logic;
+		out_QZR_data_out : out std_logic;
+		
+		out_QRam_chip_select : out std_logic;
+		out_QRam_write_en	: out std_logic;
+		out_QRam_address  	: out std_logic_vector(nBits-1 downto 0);
+		out_QRam_data_in  	: out std_logic_vector(nBits-1 downto 0);
+		out_QRam_data_out 	: out std_logic_vector(nBits-1 downto 0)
+	);
+end ProIA;
+
+architecture behavior of Quantum_Pro is
+	-----------------------------------
+	-- Componentes
+	-----------------------------------
+
+	-- Clock do Sistema
+	component QClock is
+		Generic (
+			num_ciclos: Natural := 1000
+		);
+		Port(
+			enable : in std_logic;  
+			clockExterno : in std_logic;    		
+			clockSystem : out std_logic
+		);
+	end component;
+
+	-- QStartSystem
+	component QStartSystem is
+		port(
+			clock : in std_logic;
+			reset : in std_logic;
+			flagUltimaInstrucao : in std_logic;
+			flagStartSystem: out std_logic
+		);
+	end component;
+
+	-- QPC
+	component QPC
+		Generic( Tam : integer := 8 );
+		port(
+			clock, reset : in std_logic;
+			FlagPc : in std_logic;
+			Entrada_Pc : in std_logic_vector(Tam-1 downto 0); 
+			Saida_Pc : out std_logic_vector(Tam-1 downto 0)
+			);
+	end component;
+	
+	-- QOff_Inst
+	component QOff_Inst is	
+	port(
+		IN_Sel : in std_logic; --input para opera��o 
+		clock : in std_logic;
+		enable		: in  std_logic;       		
+		data_or_instruction : in std_logic_vector(7 downto 0); 		
+		data : out std_logic_vector(7 downto 0); -- resultado para opera��o efetuada		
+		instruction : out std_logic_vector(7 downto 0) -- resultado para opera��o efetuada		
+	);
+	end component;
+	
+	-- QAdder
+	component QAdder
+		Generic(nBits : integer := 8); -- nBits para o tamanho da instru��o	
+		port(   
+			A, B : in std_logic_vector(nBits-1 downto 0); --input para opera��o        
+			EN : in std_logic; --set soma
+			overflow : out std_logic; -- identificador de overflow       
+			result : out std_logic_vector(nBits-1 downto 0) -- resultado para soma
+			);
+	end component;
+	
+	-- QRom
+	component QRom
+		Generic (
+			DATA 	: integer := 8; -- instucoes de X bits.
+			ADDR	: integer := 8 -- enderecamento de Y bits.			
+		);
+		Port(
+			clock   : in  std_logic;
+			enable	: in  std_logic;
+			address : in  std_logic_vector(ADDR-1 downto 0);
+			flagUltimaInstrucao : out std_logic;
+			data_out: out std_logic_vector(DATA-1 downto 0)
+			);
+	end component;
+	
+	-- QRam
+	component QRam
+		Generic (
+			DATA 		: integer := 8;
+			ADDR 		: integer := 8			
+			);
+		Port (
+			clock     	: in  std_logic;
+			chip_select : in  std_logic;
+			write_en	: in  std_logic;
+			address  	: in  std_logic_vector(ADDR-1 downto 0);
+			data_in  	: in  std_logic_vector(DATA-1 downto 0);
+			data_out 	: out std_logic_vector(DATA-1 downto 0)
+			);
+	end component;
+		
+	-- QBDRegister
+	component QBDRegister
+		Generic(nBits : integer := 8); -- nBits	
+		port (
+			clock : std_logic;
+			enable : in  std_logic;
+			EscReg : std_logic;		
+			Wrt_LRT : std_logic;	
+			Reg_lido_A : in std_logic_vector(nBits-7 downto 0);
+			Reg_lido_B : in std_logic_vector(nBits-7 downto 0);
+			Dado_lido_A : out std_logic_vector(nBits-1 downto 0); -- 8 bits
+			Dado_lido_B : out std_logic_vector(nBits-1 downto 0); -- 8 bits			
+			reg_escrito : in std_logic_vector(nBits-7 downto 0);			
+			dado_escrito : in std_logic_vector(nBits-1 downto 0) -- 8 bits	
+			);
+	end component;
+	
+	-- QControl
+	component QControl
+		Generic(nBits : integer := 8); -- nBits
+		port(
+			clock : in std_logic;
+			enable: in std_logic;
+			inst_part_7_4 : in std_logic_vector(nBits-5 downto 0); -- Opcode			
+			DvC : out std_logic;
+			off_instruction : out std_logic;
+			en_data : out std_logic;
+			EscMem : out std_logic;			
+			MemParaReg : out std_logic;
+			UlaOp : out std_logic_vector(nBits-5 downto 0); -- 4bits
+			LwSwOp : out std_logic;
+			EscReg : out std_logic;
+			Wrt_LRT : out std_logic;
+			enJMP : out std_logic;
+			FlagPc : out std_logic
+		);
+	end component;
+	
+	-- QALU
+	component QALU
+		Generic(nBits : integer := 8); -- nBits para o tamanho da instru��o	
+		port(
+			A, B : in std_logic_vector(nBits-1 downto 0); --input para opera��o        
+			OP : in std_logic_vector(3 downto 0); --opcode para escolha da opera��o
+			zero : out std_logic; -- para a inst. compare (CMP)		
+			overflow : out std_logic; -- identificador de overflow
+			result : out std_logic_vector(nBits-1 downto 0) -- resultado para oper��o efetuada		
+			);
+	end component;
+	
+	-- QMux_2x1
+	component QMux_2x1
+		Generic ( Tamanho : integer := 8 );
+		Port(
+			DATA_A : in  std_logic_vector(Tamanho-1 downto 0);
+			DATA_B : in  std_logic_vector(Tamanho-1 downto 0);
+			OUT_0 : out std_logic_vector(Tamanho-1 downto 0);
+			Sel: in std_logic
+			);
+	end component;
+					
+	-- QAnd
+	component QAnd
+		Port(
+			A, B : IN STD_LOGIC;
+			Result : OUT STD_LOGIC
+			);
+	end component;
+	
+	-- QZR
+	component QZR
+		port(   
+			data_in : in std_logic;
+			enable : in std_logic;
+			clock : in std_logic;
+			data_out : out std_logic
+			);
+	end component;
+		
+	-----------------------------------
+	-- Sinais
+	-----------------------------------
+
+	-- SINAL QStartSystem
+	signal t_flagStartSystem : std_logic;
+	signal t_flagUltimaInstrucao: std_logic;
+	
+	-- SINAL PC
+	signal t_pc_instruction : std_logic_vector(7 downto 0);
+	
+	
+	-- SINAL Somador PC
+	signal t_pc_sum_next_instr : std_logic_vector(7 downto 0) := "00000001"; -- 1 entrada no somador
+	signal t_out_sum_com_overflow : std_logic;		
+	signal t_next_instruction_for_PC : std_logic_vector(7 downto 0); -- Sinal Somador da proxima instru��o
+	
+	-- SINAL ROM
+	signal t_rom_instruction_7_0_into : std_logic_vector(7 downto 0);
+	
+	
+	-- Sinais da divis�o das instru��es
+	signal t_inst_part_7_4 : std_logic_vector(3 downto 0); -- Opcode -> tipo da instru��o	
+	signal t_inst_part_3_2 : std_logic_vector(1 downto 0); -- Reg2 
+	signal t_inst_part_1_0 : std_logic_vector(1 downto 0); -- Reg1  
+	signal t_inst_part_3_0 : std_logic_vector(3 downto 0); -- MEM_NUM: salto incondicional	
+	
+	
+	-- Sinais do Controle	
+	signal t_enable: std_logic;
+	signal t_dvc : std_logic;
+	signal t_off_instruction : std_logic;
+	signal t_en_data : std_logic;
+	signal t_escmem : std_logic;			
+	signal t_memparareg : std_logic;
+	signal t_ulaop : std_logic_vector(3 downto 0); -- 3 bits
+	signal t_lwswop : std_logic;
+	signal t_escreg : std_logic;
+	signal t_flagStartSystem_DW : std_logic;
+	signal t_FlagPc : std_logic;
+	signal t_enJMP : std_logic;
+	
+	
+	-- Sinais Banco de Registradores
+	signal t_Wrt_LRT : std_logic;	
+	signal t_dado_lido_1 : std_logic_vector(7 downto 0);
+	signal t_dado_lido_2 : std_logic_vector(7 downto 0);
+		--pino de out para o processador
+	signal t_out_reg_escrito : std_logic_vector(7 downto 0);
+
+	
+	--Sinal AND to MUX
+	signal t_and_out_to_mux_pc : std_logic;
+	
+	-- Extensor
+	signal t_extensor_result_8  : std_logic_vector(7 downto 0);
+	
+	-- Sinal Out Mux INTO PC
+	signal t_out_mux_into_pc : std_logic_vector(7 downto 0);
+	
+	-- Sinal And to Mux do deslocamento 
+	signal t_result_and_to_mux : std_logic_vector(7 downto 0);
+	
+	-- Sinais da ULA
+	signal t_ula_out_zero : std_logic;
+	signal t_ula_result : std_logic_vector(7 downto 0);
+	signal t_out_ULA_overflow : std_logic;
+	
+	-- Sinal flag zero
+	signal t_fzr_result : std_logic;
+	
+	-- Sinal MuxULA to Memoria de Dados
+	signal t_MuxSwLwUla_to_Mem_Dados : std_logic_vector(7 downto 0);
+	
+	-- Sinal Memoria de Dados
+	signal t_Mux_MemDados_to_MemInst : std_logic_vector(7 downto 0);
+	signal t_out_MemDados_to_Mux_MemDados : std_logic_vector(7 downto 0);
+	signal t_out_Mux_MemDados_to_Mux_Data : std_logic_vector(7 downto 0);
+	
+	-- Sinal Mux Banco de Registradores
+	signal t_Mux_IN_Banco_Registradores : std_logic_vector(7 downto 0);
+			
+	-- Sinal para o QOff_Inst
+	signal t_data : std_logic_vector(7 downto 0);
+	signal t_instruction : std_logic_vector(7 downto 0);
+	
+	--Signal start system clock
+	signal t_clock_system : std_logic;
+	
+	--Signal para Mux Data
+	signal t_data_to_BD_reg_wb : std_logic_vector(7 downto 0);
+	
+	
+-- DataPath	
+Begin
+	
+	-- Split a istru��o de 8 bits
+	split_instrucao : process (t_rom_instruction_7_0_into)
+	begin
+		t_inst_part_7_4 <= t_rom_instruction_7_0_into(7 downto 4); -- OP		
+		t_inst_part_3_2 <= t_rom_instruction_7_0_into(3 downto 2); -- Reg2			
+		t_inst_part_1_0 <= t_rom_instruction_7_0_into(1 downto 0); -- Reg1
+		t_inst_part_3_0 <= t_rom_instruction_7_0_into(3 downto 0); -- Address to JUMP
+	end process split_instrucao;
+
+	-- QClock
+	Clock_System: QClock port map(
+				enable => t_flagStartSystem,
+				clockExterno => clock,
+				clockSystem => t_clock_system
+	);
+
+	-- QStartSystem
+	StartSystem: QStartSystem port map(
+				clock => clock,
+				reset => reset,
+				flagUltimaInstrucao => t_flagUltimaInstrucao,
+				flagStartSystem => t_flagStartSystem
+	);
+
+	-- PC
+	PC_Componente: QPC port map(
+				clock => t_clock_system,
+				reset => reset,
+				FlagPc => t_FlagPc,
+				Entrada_Pc => t_out_mux_into_pc,	
+				Saida_Pc =>	t_pc_instruction	
+			);
+			
+	QOff_Inst_Componente: QOff_Inst port map(	
+		IN_Sel => t_off_instruction, --input para opera��o
+		clock => t_clock_system,  
+		enable	=> t_flagStartSystem,      		
+		data_or_instruction => t_instruction, 		
+		data => t_data, -- resultado para opera��o efetuada		
+		instruction => t_rom_instruction_7_0_into -- resultado para opera��o efetuada		
+	);
+	
+	
+	-- Sum_A_PC: Somador da Proxima instru��o
+	Sum_A_PC: QAdder port map(
+				A => t_pc_instruction,
+				B => t_pc_sum_next_instr,
+				EN => t_flagStartSystem,
+				overflow => t_out_sum_com_overflow,
+				result => t_next_instruction_for_PC
+			);
+	
+	Memoria_de_Intrucao: QRom port map(
+				clock => t_clock_system,
+				enable => t_flagStartSystem,
+				address => t_pc_instruction,
+				flagUltimaInstrucao => t_flagUltimaInstrucao,
+				data_out => t_instruction
+			);
+	
+	Control_Componente: QControl port map(
+				clock => t_clock_system,
+				enable => t_flagStartSystem,
+				inst_part_7_4 => t_inst_part_7_4,
+				DvC => t_dvc,
+				off_instruction => t_off_instruction,
+				en_data => t_en_data,
+				EscMem => t_escmem,
+				MemParaReg => t_memparareg,
+				UlaOp => t_ulaop,
+				LwSwOp => t_lwswop,
+				EscReg => t_escreg,
+				Wrt_LRT => t_Wrt_LRT,
+				enJMP => t_enJMP,
+				FlagPc => t_FlagPc
+			);
+								
+--	Extensor_to_8: QExt_4 port map(
+--					Entrada_Ext => t_inst_part_3_0,
+--					Saida_Ext => t_extensor_result_8
+--				);
+				
+	Banco_de_Registradores: QBDRegister port map(
+					clock => t_clock_system,
+					enable => t_flagStartSystem,
+					EscReg => t_escreg,
+					Wrt_LRT => t_Wrt_LRT,
+					Reg_lido_A => t_inst_part_3_2,
+					Reg_lido_B => t_inst_part_1_0,
+					Dado_lido_A => t_dado_lido_1,
+					Dado_lido_B => t_dado_lido_2,
+					reg_escrito => t_inst_part_1_0,
+					dado_escrito => t_data_to_BD_reg_wb					
+				);
+				
+	Mux_to_PC: QMux_2x1 port map(
+					DATA_A => t_next_instruction_for_PC,
+					DATA_B => t_data, -- t_extensor_result_8,
+					OUT_0 => t_out_mux_into_pc,
+					Sel => t_and_out_to_mux_pc 					
+				);
+				
+	And_Componente: QAnd port map(
+					A => t_dvc, 
+					B => t_fzr_result,
+					Result => t_and_out_to_mux_pc
+				);
+				
+	Flag_ZERO: QZR port map(
+					data_in => t_ula_out_zero,
+					clock => t_clock_system,
+					enable => t_enJMP,
+					data_out => t_fzr_result
+				);
+				
+	ULA: QALU port map(
+			A => t_dado_lido_2, -- � trocado mesmo os pinos... pra refletir o comando, ex: add $s1, $s0;
+			B => t_dado_lido_1,
+			OP => t_ulaop,
+			zero => t_ula_out_zero,
+			overflow => t_out_ULA_overflow,
+			result => t_ula_result
+		);
+		
+	Mux_LW_SW_ULA: QMux_2x1 port map(
+					DATA_A => t_ula_result,
+					DATA_B => t_dado_lido_1,
+					OUT_0 => t_MuxSwLwUla_to_Mem_Dados,
+					Sel => t_lwswop 					
+				);
+		
+		
+	Memoria_de_Dados: QRam port map(
+					clock => t_clock_system,
+					chip_select => t_flagStartSystem,
+					write_en => t_escmem,
+					address => t_MuxSwLwUla_to_Mem_Dados,
+					data_in => t_dado_lido_2,
+					data_out => t_Mux_MemDados_to_MemInst				
+				);
+				
+	Mux_Out_Mem_Dados: QMux_2x1 port map(
+					DATA_A => t_Mux_MemDados_to_MemInst,
+					DATA_B => t_ula_result,
+					OUT_0 => t_out_Mux_MemDados_to_Mux_Data,
+					Sel => t_memparareg
+				);
+				
+	Mux_Data: QMux_2x1 port map(
+					DATA_A => t_data,
+					DATA_B => t_out_Mux_MemDados_to_Mux_Data,
+					OUT_0 => t_data_to_BD_reg_wb,
+					Sel => t_en_data
+				);
+				
+		
+	------------------------------------------------------------ PARA DEBUG
+	-- QStartSystem
+	out_Clock_System <= t_clock_system;
+	out_QStartSystem_flagStartSystem <= t_flagStartSystem;
+	out_QStartSystem_flagUltimaInstrucao <= t_flagUltimaInstrucao;
+
+	-- Banco de Registradores
+	out_BDReg_reg_escrito <= t_inst_part_1_0;
+	out_BDReg_dado_escrito <= t_data_to_BD_reg_wb;
+	
+	out_BDDado_lido_A <= t_dado_lido_1;
+	out_BDDado_lido_B <= t_dado_lido_2;
+	out_BDReg_lido_A <= t_inst_part_3_2;
+	out_BDReg_lido_B <= t_inst_part_1_0;
+			
+	-- PC
+	out_PC_entrada <= t_out_mux_into_pc;
+	out_PC_saida <= t_pc_instruction;
+	out_PC_clock <= t_clock_system;
+	
+	-- Memoria de Instru��es
+	out_MEM_INST_address <= t_pc_instruction;
+	out_MEM_INST_data_out <= t_instruction;
+	
+	-- Sum_A_PC
+	out_SUM_A_to_PC_IN_A <= t_pc_instruction;
+	out_SUM_A_to_PC_IN_B <= t_pc_sum_next_instr;
+	out_SUM_A_to_PC_IN_result <= t_next_instruction_for_PC;
+	
+	-- QAND
+	out_QAND_A <= t_dvc;
+	out_QAND_B <= t_fzr_result;
+	out_QAND_Result <= t_and_out_to_mux_pc;
+	
+	-- QControl
+	out_QControl_clock <= t_clock_system;
+	out_QControl_inst_part_7_4 <= t_inst_part_7_4; -- Opcode			
+	out_QControl_DvC <= t_dvc;
+	out_QControl_off_instruction <= t_off_instruction;
+	out_QControl_en_data <= t_en_data;
+	out_QControl_EscMem <= t_escmem;			
+	out_QControl_MemParaReg <= t_memparareg;
+	out_QControl_UlaOp <= t_ulaop; -- 4 bits
+	out_QControl_LwSwOp <= t_lwswop;
+	out_QControl_EscReg <= t_escreg;
+	out_QControl_Wrt_LRT <= t_Wrt_LRT;
+	out_QControl_FlagPc <= t_FlagPc;
+	out_QControl_enJMP <= t_enJMP;
+	
+	
+	-- QALU
+	out_QALU_A <= t_dado_lido_1;
+	out_QALU_B <= t_dado_lido_2;
+	out_QALU_OP <= t_ulaop;
+	out_QALU_zero <= t_ula_out_zero;
+	out_QALU_overflow <= t_out_ULA_overflow;
+	out_QALU_result <= t_ula_result;
+		
+	-- QOFF	
+	out_QOff_IN_Sel <= t_off_instruction;
+	out_QOff_instruction <= t_rom_instruction_7_0_into;
+	out_QOff_data <= t_data;
+	
+	-- QZR
+	out_QZR_data_out <= t_fzr_result;
+	
+	-- QRam
+	out_QRam_chip_select <= t_flagStartSystem;
+	out_QRam_write_en <= t_escmem;
+	out_QRam_address <= t_MuxSwLwUla_to_Mem_Dados;
+	out_QRam_data_in <= t_dado_lido_2;
+	out_QRam_data_out <= t_Mux_MemDados_to_MemInst;
+
+End behavior;

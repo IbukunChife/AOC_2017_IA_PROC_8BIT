@@ -1,0 +1,32 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity pc is
+port(clock: in std_logic;
+	  flag: in std_logic;
+	  entrada : inout std_logic_vector(7 downto 0);
+	  saida : out std_logic_vector(7 downto 0)
+		);
+end pc;
+	
+architecture behavior of pc is
+begin
+	process(clock)
+	variable cont: std_logic;
+	variable prox: std_logic_vector(7 downto 0) := "00000001";
+	begin
+		if (clock'event) and (clock  = '1') then
+			if (flag = '1') then
+				saida <= entrada;
+			else 
+				saida <= "ZZZZZZZZ";
+			end if;
+		end if;
+		FOR i IN 0 to 7 LOOP
+				entrada(i) <= ((entrada(i) xor prox(i)) xor cont);
+				cont := (entrada(i) and prox(i)) or ((entrada(i) xor prox(i)) and cont);
+		END LOOP;
+	end process;
+end behavior;

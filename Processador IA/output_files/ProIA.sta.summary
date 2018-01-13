@@ -1,0 +1,181 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'ProIAClock'
+Slack : -13.645
+TNS   : -739.501
+
+Type  : Slow 1100mV 85C Model Setup 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -11.100
+TNS   : -140.622
+
+Type  : Slow 1100mV 85C Model Setup 'ProIAEnableFlag'
+Slack : -5.547
+TNS   : -19.101
+
+Type  : Slow 1100mV 85C Model Hold 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.041
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'ProIAClock'
+Slack : 0.375
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'ProIAEnableFlag'
+Slack : 1.870
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -4.808
+TNS   : -55.275
+
+Type  : Slow 1100mV 85C Model Removal 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.290
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'ProIAClock'
+Slack : -0.724
+TNS   : -142.604
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -0.551
+TNS   : -10.309
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'ProIAEnableFlag'
+Slack : 0.164
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'ProIAClock'
+Slack : -13.113
+TNS   : -702.881
+
+Type  : Slow 1100mV 0C Model Setup 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -10.993
+TNS   : -140.733
+
+Type  : Slow 1100mV 0C Model Setup 'ProIAEnableFlag'
+Slack : -5.686
+TNS   : -19.349
+
+Type  : Slow 1100mV 0C Model Hold 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -0.189
+TNS   : -0.258
+
+Type  : Slow 1100mV 0C Model Hold 'ProIAClock'
+Slack : 0.193
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'ProIAEnableFlag'
+Slack : 1.852
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -4.863
+TNS   : -56.611
+
+Type  : Slow 1100mV 0C Model Removal 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.174
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'ProIAClock'
+Slack : -0.724
+TNS   : -142.671
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -0.590
+TNS   : -13.852
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'ProIAEnableFlag'
+Slack : 0.162
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'ProIAClock'
+Slack : -5.122
+TNS   : -316.484
+
+Type  : Fast 1100mV 85C Model Setup 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -5.121
+TNS   : -62.845
+
+Type  : Fast 1100mV 85C Model Setup 'ProIAEnableFlag'
+Slack : -1.828
+TNS   : -5.940
+
+Type  : Fast 1100mV 85C Model Hold 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.060
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'ProIAClock'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'ProIAEnableFlag'
+Slack : 0.693
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -2.528
+TNS   : -28.523
+
+Type  : Fast 1100mV 85C Model Removal 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.240
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'ProIAEnableFlag'
+Slack : -0.110
+TNS   : -0.536
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'ProIAClock'
+Slack : -0.089
+TNS   : -10.656
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -0.077
+TNS   : -0.745
+
+Type  : Fast 1100mV 0C Model Setup 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -4.599
+TNS   : -56.770
+
+Type  : Fast 1100mV 0C Model Setup 'ProIAClock'
+Slack : -4.578
+TNS   : -259.711
+
+Type  : Fast 1100mV 0C Model Setup 'ProIAEnableFlag'
+Slack : -1.592
+TNS   : -5.090
+
+Type  : Fast 1100mV 0C Model Hold 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.033
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'ProIAClock'
+Slack : 0.159
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'ProIAEnableFlag'
+Slack : 0.600
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : -2.343
+TNS   : -26.727
+
+Type  : Fast 1100mV 0C Model Removal 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.248
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'ProIAClock'
+Slack : -0.088
+TNS   : -10.654
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'ProIAEnableFlag'
+Slack : -0.077
+TNS   : -0.354
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'UniControl:UniControl_component|recv_opcode[0]'
+Slack : 0.009
+TNS   : 0.000
+
+------------------------------------------------------------

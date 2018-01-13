@@ -1,0 +1,687 @@
+Analysis & Synthesis report for ProIA
+Fri Jan 12 19:46:49 2018
+Quartus Prime Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |ProIA|UniControl:UniControl_component|state
+  9. User-Specified and Inferred Latches
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |ProIA
+ 14. Port Connectivity Checks: "B:B_component"
+ 15. Port Connectivity Checks: "A:A_component"
+ 16. Post-Synthesis Netlist Statistics for Top Partition
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Fri Jan 12 19:46:48 2018       ;
+; Quartus Prime Version           ; 15.1.0 Build 185 10/21/2015 SJ Lite Edition ;
+; Revision Name                   ; ProIA                                       ;
+; Top-level Entity Name           ; ProIA                                       ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 137                                         ;
+; Total pins                      ; 145                                         ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
+; Top-level entity name                                                           ; ProIA              ; ProIA              ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                       ; Off                ; Off                ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; PowerPlay Power Optimization During Synthesis                                   ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Synthesis Seed                                                                  ; 1                  ; 1                  ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                    ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                             ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------+---------+
+; ProIA.vhd                        ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd       ;         ;
+; breg8.vhd                        ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/breg8.vhd       ;         ;
+; pc.vhd                           ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/pc.vhd          ;         ;
+; ram8.vhd                         ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd        ;         ;
+; rom8.vhd                         ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd        ;         ;
+; A.vhd                            ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/A.vhd           ;         ;
+; B.vhd                            ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/B.vhd           ;         ;
+; ULAout.vhd                       ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/ULAout.vhd      ;         ;
+; MDR.vhd                          ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/MDR.vhd         ;         ;
+; muxA.vhd                         ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/muxA.vhd        ;         ;
+; muxB.vhd                         ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/muxB.vhd        ;         ;
+; muxUM.vhd                        ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/muxUM.vhd       ;         ;
+; muxPUJ.vhd                       ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd      ;         ;
+; exSinal2x8.vhd                   ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/exSinal2x8.vhd  ;         ;
+; exSinal4x8.vhd                   ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/exSinal4x8.vhd  ;         ;
+; UniControl.vhd                   ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd  ;         ;
+; MAnd.vhd                         ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/MAnd.vhd        ;         ;
+; MOr.vhd                          ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/MOr.vhd         ;         ;
+; exSinal_2x8.vhd                  ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/exSinal_2x8.vhd ;         ;
+; ula.vhd                          ; yes             ; User VHDL File  ; C:/Users/WizIBK inck/Desktop/Processador/ula.vhd         ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------+---------+
+
+
++----------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                    ;
++---------------------------------------------+------------------+
+; Resource                                    ; Usage            ;
++---------------------------------------------+------------------+
+; Estimate of Logic utilization (ALMs needed) ; 242              ;
+;                                             ;                  ;
+; Combinational ALUT usage for logic          ; 343              ;
+;     -- 7 input functions                    ; 5                ;
+;     -- 6 input functions                    ; 116              ;
+;     -- 5 input functions                    ; 64               ;
+;     -- 4 input functions                    ; 69               ;
+;     -- <=3 input functions                  ; 89               ;
+;                                             ;                  ;
+; Dedicated logic registers                   ; 137              ;
+;                                             ;                  ;
+; I/O pins                                    ; 145              ;
+;                                             ;                  ;
+; Total DSP Blocks                            ; 0                ;
+;                                             ;                  ;
+; Maximum fan-out node                        ; ProIAClock~input ;
+; Maximum fan-out                             ; 140              ;
+; Total fan-out                               ; 2299             ;
+; Average fan-out                             ; 2.99             ;
++---------------------------------------------+------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
++--------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+----------------------------------------+--------------+
+; Compilation Hierarchy Node           ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                    ; Library Name ;
++--------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+----------------------------------------+--------------+
+; |ProIA                               ; 343 (0)           ; 137 (0)      ; 0                 ; 0          ; 145  ; 0            ; |ProIA                                 ; work         ;
+;    |MAnd:And_component|              ; 1 (1)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|MAnd:And_component              ; work         ;
+;    |MDR:MDR_component|               ; 0 (0)             ; 8 (8)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|MDR:MDR_component               ; work         ;
+;    |MOr:Or_component|                ; 1 (1)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|MOr:Or_component                ; work         ;
+;    |ULAout:ULAout_component|         ; 0 (0)             ; 8 (8)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|ULAout:ULAout_component         ; work         ;
+;    |UniControl:UniControl_component| ; 94 (94)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |ProIA|UniControl:UniControl_component ; work         ;
+;    |breg8:breg8_component|           ; 10 (10)           ; 32 (32)      ; 0                 ; 0          ; 0    ; 0            ; |ProIA|breg8:breg8_component           ; work         ;
+;    |muxA:muxA_component|             ; 8 (8)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|muxA:muxA_component             ; work         ;
+;    |muxB:muxB_component|             ; 10 (10)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|muxB:muxB_component             ; work         ;
+;    |muxPUJ:muxPUJ_component|         ; 18 (18)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|muxPUJ:muxPUJ_component         ; work         ;
+;    |muxUM:muxUM_component|           ; 8 (8)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|muxUM:muxUM_component           ; work         ;
+;    |pc:pc_component|                 ; 23 (23)           ; 17 (17)      ; 0                 ; 0          ; 0    ; 0            ; |ProIA|pc:pc_component                 ; work         ;
+;    |ram8:ram8_component|             ; 18 (18)           ; 16 (16)      ; 0                 ; 0          ; 0    ; 0            ; |ProIA|ram8:ram8_component             ; work         ;
+;    |rom8:rom8_component|             ; 9 (9)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |ProIA|rom8:rom8_component             ; work         ;
+;    |ula:ula_component|               ; 143 (143)         ; 46 (46)      ; 0                 ; 0          ; 0    ; 0            ; |ProIA|ula:ula_component               ; work         ;
++--------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+----------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |ProIA|UniControl:UniControl_component|state                                                                                                                                          ;
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+------------+
+; Name           ; state.estadoS9 ; state.estadoS8 ; state.estadoS7 ; state.estadoS6 ; state.estadoS5 ; state.estadoS4 ; state.estadoS3 ; state.estadoS2 ; state.estadoS1 ; state.estadoS0 ; state.Free ;
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+------------+
+; state.Free     ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0          ;
+; state.estadoS0 ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1              ; 1          ;
+; state.estadoS1 ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1              ; 0              ; 1          ;
+; state.estadoS2 ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1              ; 0              ; 0              ; 1          ;
+; state.estadoS3 ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1              ; 0              ; 0              ; 0              ; 1          ;
+; state.estadoS4 ; 0              ; 0              ; 0              ; 0              ; 0              ; 1              ; 0              ; 0              ; 0              ; 0              ; 1          ;
+; state.estadoS5 ; 0              ; 0              ; 0              ; 0              ; 1              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1          ;
+; state.estadoS6 ; 0              ; 0              ; 0              ; 1              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1          ;
+; state.estadoS7 ; 0              ; 0              ; 1              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1          ;
+; state.estadoS8 ; 0              ; 1              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1          ;
+; state.estadoS9 ; 1              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 0              ; 1          ;
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                           ;
++-----------------------------------------------------+------------------------------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal                            ; Free of Timing Hazards ;
++-----------------------------------------------------+------------------------------------------------+------------------------+
+; UniControl:UniControl_component|esc_reg$latch       ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|esc_reg_896         ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|memParaReg$latch    ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|memParaReg_1097     ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|pc_cond$latch       ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|fonte_PC[0]_676     ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|pc_flag$latch       ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|pc_flag_1256        ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ler_men$latch       ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ler_men_1172        ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|esc_men$latch       ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|esc_men_1134        ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[0]$latch      ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[0]_937        ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[1]$latch      ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[1]_978        ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[2]$latch      ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[2]_1016       ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[3]$latch      ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ULAop[3]_1056       ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ula_fonteA$latch    ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ula_fonteA_853      ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ula_fonteB[0]$latch ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ula_fonteB[0]_760   ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ula_fonteB[1]$latch ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|ula_fonteB[1]_807   ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|fonte_PC[1]$latch   ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|fonte_PC[1]_713     ; UniControl:UniControl_component|Mux1           ; yes                    ;
+; UniControl:UniControl_component|recv_opcode[3]      ; UniControl:UniControl_component|recv_opcode[0] ; yes                    ;
+; UniControl:UniControl_component|recv_opcode[2]      ; UniControl:UniControl_component|recv_opcode[0] ; yes                    ;
+; UniControl:UniControl_component|recv_opcode[1]      ; UniControl:UniControl_component|recv_opcode[0] ; yes                    ;
+; UniControl:UniControl_component|recv_opcode[0]      ; UniControl:UniControl_component|recv_opcode[0] ; yes                    ;
+; Number of user-specified and inferred latches = 32  ;                                                ;                        ;
++-----------------------------------------------------+------------------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                       ;
++--------------------------------------------+---------------------------------------------+
+; Register name                              ; Reason for Removal                          ;
++--------------------------------------------+---------------------------------------------+
+; ula:ula_component|mult[0]                  ; Lost fanout                                 ;
+; ula:ula_component|aux_dado[7]              ; Stuck at GND due to stuck port data_in      ;
+; ula:ula_component|aux_mult[15]             ; Stuck at GND due to stuck port data_in      ;
+; ula:ula_component|mult[15]                 ; Stuck at GND due to stuck port data_in      ;
+; UniControl:UniControl_component|state.Free ; Lost fanout                                 ;
+; ram8:ram8_component|mem~21                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~29                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~22                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~30                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~23                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~31                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~24                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~32                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~25                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~33                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~26                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~34                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~27                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~35                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~28                 ; Stuck at GND due to stuck port clock_enable ;
+; ram8:ram8_component|mem~36                 ; Stuck at GND due to stuck port clock_enable ;
+; Total Number of Removed Registers = 21     ;                                             ;
++--------------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 137   ;
+; Number of registers using Synchronous Clear  ; 1     ;
+; Number of registers using Synchronous Load   ; 21    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 101   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; 9:1                ; 8 bits    ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; Yes        ; |ProIA|ula:ula_component|resultado[0] ;
+; 16:1               ; 7 bits    ; 70 LEs        ; 42 LEs               ; 28 LEs                 ; Yes        ; |ProIA|ula:ula_component|aux_mult[13] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |ProIA|muxB:muxB_component|Mux7       ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |ProIA|muxPUJ:muxPUJ_component|Mux7   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |ProIA|muxPUJ:muxPUJ_component|Mux0   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |ProIA ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; nBits          ; 8     ; Signed Integer                               ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "B:B_component"                                                                      ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "A:A_component"                                                                      ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 137                         ;
+;     ENA               ; 88                          ;
+;     ENA SLD           ; 13                          ;
+;     SCLR              ; 1                           ;
+;     SLD               ; 8                           ;
+;     plain             ; 27                          ;
+; arriav_io_obuf        ; 57                          ;
+; arriav_lcell_comb     ; 344                         ;
+;     extend            ; 5                           ;
+;         7 data inputs ; 5                           ;
+;     normal            ; 339                         ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 41                          ;
+;         3 data inputs ; 48                          ;
+;         4 data inputs ; 69                          ;
+;         5 data inputs ; 64                          ;
+;         6 data inputs ; 116                         ;
+; boundary_port         ; 145                         ;
+;                       ;                             ;
+; Max LUT depth         ; 26.00                       ;
+; Average LUT depth     ; 7.84                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:13     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+    Info: Processing started: Fri Jan 12 19:44:02 2018
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProIA -c ProIA
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file proia.vhd
+    Info (12022): Found design unit 1: ProIA-behavior File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 64
+    Info (12023): Found entity 1: ProIA File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 11
+Info (12021): Found 2 design units, including 1 entities, in source file breg8.vhd
+    Info (12022): Found design unit 1: breg8-Behavior File: C:/Users/WizIBK inck/Desktop/Processador/breg8.vhd Line: 14
+    Info (12023): Found entity 1: breg8 File: C:/Users/WizIBK inck/Desktop/Processador/breg8.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file pc.vhd
+    Info (12022): Found design unit 1: pc-behavior File: C:/Users/WizIBK inck/Desktop/Processador/pc.vhd Line: 14
+    Info (12023): Found entity 1: pc File: C:/Users/WizIBK inck/Desktop/Processador/pc.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file ram8.vhd
+    Info (12022): Found design unit 1: ram8-behavior File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 14
+    Info (12023): Found entity 1: ram8 File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file rom8.vhd
+    Info (12022): Found design unit 1: rom8-behavior File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 11
+    Info (12023): Found entity 1: rom8 File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file a.vhd
+    Info (12022): Found design unit 1: A-behavior File: C:/Users/WizIBK inck/Desktop/Processador/A.vhd Line: 12
+    Info (12023): Found entity 1: A File: C:/Users/WizIBK inck/Desktop/Processador/A.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file b.vhd
+    Info (12022): Found design unit 1: B-behavior File: C:/Users/WizIBK inck/Desktop/Processador/B.vhd Line: 12
+    Info (12023): Found entity 1: B File: C:/Users/WizIBK inck/Desktop/Processador/B.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file ulaout.vhd
+    Info (12022): Found design unit 1: ULAout-behavior File: C:/Users/WizIBK inck/Desktop/Processador/ULAout.vhd Line: 12
+    Info (12023): Found entity 1: ULAout File: C:/Users/WizIBK inck/Desktop/Processador/ULAout.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file mdr.vhd
+    Info (12022): Found design unit 1: MDR-behavior File: C:/Users/WizIBK inck/Desktop/Processador/MDR.vhd Line: 12
+    Info (12023): Found entity 1: MDR File: C:/Users/WizIBK inck/Desktop/Processador/MDR.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file muxa.vhd
+    Info (12022): Found design unit 1: muxA-multiplexador File: C:/Users/WizIBK inck/Desktop/Processador/muxA.vhd Line: 12
+    Info (12023): Found entity 1: muxA File: C:/Users/WizIBK inck/Desktop/Processador/muxA.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file muxb.vhd
+    Info (12022): Found design unit 1: muxB-multiplexador File: C:/Users/WizIBK inck/Desktop/Processador/muxB.vhd Line: 13
+    Info (12023): Found entity 1: muxB File: C:/Users/WizIBK inck/Desktop/Processador/muxB.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file muxum.vhd
+    Info (12022): Found design unit 1: muxUM-multiplexador File: C:/Users/WizIBK inck/Desktop/Processador/muxUM.vhd Line: 12
+    Info (12023): Found entity 1: muxUM File: C:/Users/WizIBK inck/Desktop/Processador/muxUM.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file muxpuj.vhd
+    Info (12022): Found design unit 1: muxPUJ-multiplexador File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 13
+    Info (12023): Found entity 1: muxPUJ File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file exsinal2x8.vhd
+    Info (12022): Found design unit 1: exSinal2x8-extensor File: C:/Users/WizIBK inck/Desktop/Processador/exSinal2x8.vhd Line: 11
+    Info (12023): Found entity 1: exSinal2x8 File: C:/Users/WizIBK inck/Desktop/Processador/exSinal2x8.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file exsinal4x8.vhd
+    Info (12022): Found design unit 1: exSinal4x8-extensor File: C:/Users/WizIBK inck/Desktop/Processador/exSinal4x8.vhd Line: 11
+    Info (12023): Found entity 1: exSinal4x8 File: C:/Users/WizIBK inck/Desktop/Processador/exSinal4x8.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file unicontrol.vhd
+    Info (12022): Found design unit 1: UniControl-behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 26
+    Info (12023): Found entity 1: UniControl File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file mand.vhd
+    Info (12022): Found design unit 1: MAnd-logic_and File: C:/Users/WizIBK inck/Desktop/Processador/MAnd.vhd Line: 11
+    Info (12023): Found entity 1: MAnd File: C:/Users/WizIBK inck/Desktop/Processador/MAnd.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file mor.vhd
+    Info (12022): Found design unit 1: MOr-logic_or File: C:/Users/WizIBK inck/Desktop/Processador/MOr.vhd Line: 11
+    Info (12023): Found entity 1: MOr File: C:/Users/WizIBK inck/Desktop/Processador/MOr.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file exsinal_2x8.vhd
+    Info (12022): Found design unit 1: exSinal_2x8-extensor File: C:/Users/WizIBK inck/Desktop/Processador/exSinal_2x8.vhd Line: 11
+    Info (12023): Found entity 1: exSinal_2x8 File: C:/Users/WizIBK inck/Desktop/Processador/exSinal_2x8.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file ula.vhd
+    Info (12022): Found design unit 1: ula-funcao File: C:/Users/WizIBK inck/Desktop/Processador/ula.vhd Line: 17
+    Info (12023): Found entity 1: ula File: C:/Users/WizIBK inck/Desktop/Processador/ula.vhd Line: 7
+Info (12127): Elaborating entity "ProIA" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at ProIA.vhd(286): object "t_out_reg_A" assigned a value but never read File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 286
+Warning (10036): Verilog HDL or VHDL warning at ProIA.vhd(289): object "t_out_reg_B" assigned a value but never read File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 289
+Info (12128): Elaborating entity "MAnd" for hierarchy "MAnd:And_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 344
+Info (12128): Elaborating entity "MOr" for hierarchy "MOr:Or_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 351
+Info (12128): Elaborating entity "pc" for hierarchy "pc:pc_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 358
+Info (12128): Elaborating entity "rom8" for hierarchy "rom8:rom8_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 366
+Info (12128): Elaborating entity "UniControl" for hierarchy "UniControl:UniControl_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 372
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "pc_flag", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "pc_cond", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "ler_men", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "esc_men", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "memParaReg", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "ULAop", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "esc_reg", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "ula_fonteA", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "ula_fonteB", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "fonte_PC", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (10631): VHDL Process Statement warning at UniControl.vhd(44): inferring latch(es) for signal or variable "recv_opcode", which holds its previous value in one or more paths through the process File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "fonte_PC[0]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "fonte_PC[1]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ula_fonteB[0]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ula_fonteB[1]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ula_fonteA" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "esc_reg" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ULAop[0]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ULAop[1]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ULAop[2]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ULAop[3]" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "memParaReg" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "esc_men" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "ler_men" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "pc_cond" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "pc_flag" at UniControl.vhd(44) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Info (10041): Inferred latch for "recv_opcode[0]" at UniControl.vhd(48) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Info (10041): Inferred latch for "recv_opcode[1]" at UniControl.vhd(48) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Info (10041): Inferred latch for "recv_opcode[2]" at UniControl.vhd(48) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Info (10041): Inferred latch for "recv_opcode[3]" at UniControl.vhd(48) File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Info (12128): Elaborating entity "breg8" for hierarchy "breg8:breg8_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 391
+Info (12128): Elaborating entity "exSinal_2x8" for hierarchy "exSinal_2x8:exSinal_2x8_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 402
+Info (12128): Elaborating entity "exSinal2x8" for hierarchy "exSinal2x8:exSinal2x8_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 408
+Info (12128): Elaborating entity "exSinal4x8" for hierarchy "exSinal4x8:exSinal4x8_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 414
+Info (12128): Elaborating entity "A" for hierarchy "A:A_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 420
+Info (12128): Elaborating entity "B" for hierarchy "B:B_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 428
+Info (12128): Elaborating entity "muxA" for hierarchy "muxA:muxA_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 435
+Info (12128): Elaborating entity "muxB" for hierarchy "muxB:muxB_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 443
+Warning (10492): VHDL Process Statement warning at muxB.vhd(21): signal "dadoC" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/WizIBK inck/Desktop/Processador/muxB.vhd Line: 21
+Info (12128): Elaborating entity "ula" for hierarchy "ula:ula_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 452
+Info (12128): Elaborating entity "ULAout" for hierarchy "ULAout:ULAout_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 462
+Info (12128): Elaborating entity "muxUM" for hierarchy "muxUM:muxUM_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 469
+Info (12128): Elaborating entity "muxPUJ" for hierarchy "muxPUJ:muxPUJ_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 478
+Warning (10492): VHDL Process Statement warning at muxPUJ.vhd(20): signal "dadoC" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 20
+Info (12128): Elaborating entity "ram8" for hierarchy "ram8:ram8_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 487
+Info (12128): Elaborating entity "MDR" for hierarchy "MDR:MDR_component" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 498
+Info (276014): Found 2 instances of uninferred RAM logic
+    Info (276004): RAM logic "ram8:ram8_component|mem" is uninferred due to inappropriate RAM size File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 16
+    Info (276004): RAM logic "breg8:breg8_component|reg" is uninferred due to inappropriate RAM size File: C:/Users/WizIBK inck/Desktop/Processador/breg8.vhd Line: 16
+Warning (13050): Open-drain buffer(s) that do not directly drive top-level pin(s) are removed
+    Warning (13051): Converted the fanout from the open-drain buffer "rom8:rom8_component|data[2]" to the node "breg8:breg8_component|reg" into a wire File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+    Warning (13051): Converted the fanout from the open-drain buffer "rom8:rom8_component|data[3]" to the node "muxPUJ:muxPUJ_component|Mux3" into a wire File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+    Warning (13051): Converted the fanout from the open-drain buffer "rom8:rom8_component|data[0]" to the node "breg8:breg8_component|reg" into a wire File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+    Warning (13051): Converted the fanout from the open-drain buffer "rom8:rom8_component|data[1]" to the node "muxPUJ:muxPUJ_component|Mux1" into a wire File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[1]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[2]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[3]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[4]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[5]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[6]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|esc_reg" to the node "breg8:breg8_component|SaidaB[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 19
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|memParaReg" to the node "muxUM:muxUM_component|saida[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 17
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[0]" to the node "pc:pc_component|cont" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[1]" to the node "pc:pc_component|cont" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[2]" to the node "pc:pc_component|cont" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[3]" to the node "pc:pc_component|cont" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[4]" to the node "pc:pc_component|cont" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[5]" to the node "pc:pc_component|cont" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[6]" to the node "pc:pc_component|cont" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "muxPUJ:muxPUJ_component|saida[7]" to the node "pc:pc_component|next_instruction" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/muxPUJ.vhd Line: 9
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|pc_cond" to the node "MAnd:And_component|R" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 14
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|pc_flag" to the node "MOr:Or_component|R" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 13
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom8:rom8_component|data[4]" to the node "UniControl:UniControl_component|recv_opcode[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom8:rom8_component|data[5]" to the node "UniControl:UniControl_component|recv_opcode[1]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom8:rom8_component|data[6]" to the node "UniControl:UniControl_component|recv_opcode[2]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+    Warning (13047): Converted the fan-out from the tri-state buffer "rom8:rom8_component|data[7]" to the node "UniControl:UniControl_component|recv_opcode[3]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/rom8.vhd Line: 8
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|esc_men" to the node "ram8:ram8_component|mem" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 16
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ULAop[0]" to the node "ula:ula_component|Equal2" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ULAop[1]" to the node "ula:ula_component|resultado[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ULAop[2]" to the node "ula:ula_component|resultado[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ULAop[3]" to the node "ula:ula_component|resultado[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ula_fonteA" to the node "muxA:muxA_component|saida[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 20
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ula_fonteB[0]" to the node "muxB:muxB_component|Mux5" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ula_fonteB[1]" to the node "muxB:muxB_component|Mux5" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|fonte_PC[0]" to the node "muxPUJ:muxPUJ_component|Mux8" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 22
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|fonte_PC[1]" to the node "muxPUJ:muxPUJ_component|Mux8" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[0]" to the node "MDR:MDR_component|Q[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[1]" to the node "MDR:MDR_component|Q[1]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[2]" to the node "MDR:MDR_component|Q[2]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[3]" to the node "MDR:MDR_component|Q[3]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[4]" to the node "MDR:MDR_component|Q[4]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[5]" to the node "MDR:MDR_component|Q[5]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[6]" to the node "MDR:MDR_component|Q[6]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "ram8:ram8_component|data_saida[7]" to the node "MDR:MDR_component|Q[7]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/ram8.vhd Line: 11
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[0]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[1]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[2]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[3]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[4]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[5]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[6]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[7]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[7]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+    Warning (13047): Converted the fan-out from the tri-state buffer "UniControl:UniControl_component|ler_men" to the node "ram8:ram8_component|data_saida[7]" into an OR gate File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 15
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ula_fonteB[1]_807" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ula_fonteB[0]_760" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|fonte_PC[1]_713" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|fonte_PC[0]_676" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ULAop[0]_937" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ULAop[1]_978" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ULAop[2]_1016" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ULAop[3]_1056" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|memParaReg_1097" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|esc_men_1134" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ler_men_1172" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|pc_flag_1256" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Info (13026): Duplicate LATCH primitive "UniControl:UniControl_component|ula_fonteA_853" merged with LATCH primitive "UniControl:UniControl_component|esc_reg_896" File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+Warning (13012): Latch UniControl:UniControl_component|esc_reg$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS7 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|esc_reg_896 has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|recv_opcode[0] File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Warning (13012): Latch UniControl:UniControl_component|memParaReg$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS7 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|pc_cond$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS8 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|pc_flag$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS6 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|ler_men$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|recv_opcode[3] File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Warning (13012): Latch UniControl:UniControl_component|esc_men$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS5 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|ULAop[0]$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS6 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|ULAop[1]$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|recv_opcode[3] File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Warning (13012): Latch UniControl:UniControl_component|ULAop[2]$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|recv_opcode[3] File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Warning (13012): Latch UniControl:UniControl_component|ULAop[3]$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|recv_opcode[3] File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 48
+Warning (13012): Latch UniControl:UniControl_component|ula_fonteA$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS6 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|ula_fonteB[0]$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS1 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|ula_fonteB[1]$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS1 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13012): Latch UniControl:UniControl_component|fonte_PC[1]$latch has unsafe behavior File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 44
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal UniControl:UniControl_component|state.estadoS9 File: C:/Users/WizIBK inck/Desktop/Processador/UniControl.vhd Line: 32
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "out_Ram_data_in[2]" is stuck at GND File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 59
+    Warning (13410): Pin "out_Ram_data_in[3]" is stuck at GND File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 59
+    Warning (13410): Pin "out_Ram_data_in[4]" is stuck at GND File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 59
+    Warning (13410): Pin "out_Ram_data_in[5]" is stuck at GND File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 59
+    Warning (13410): Pin "out_Ram_data_in[6]" is stuck at GND File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 59
+    Warning (13410): Pin "out_Ram_data_in[7]" is stuck at GND File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 59
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "ProIAreset" File: C:/Users/WizIBK inck/Desktop/Processador/ProIA.vhd Line: 14
+Info (21057): Implemented 587 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 142 output pins
+    Info (21061): Implemented 442 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 112 warnings
+    Info: Peak virtual memory: 931 megabytes
+    Info: Processing ended: Fri Jan 12 19:46:49 2018
+    Info: Elapsed time: 00:02:47
+    Info: Total CPU time (on all processors): 00:01:48
+
+

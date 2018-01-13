@@ -1,0 +1,713 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_arith.all;
+
+entity UniControl is
+	port(
+	      clock : in std_logic;
+		  enable : in std_logic;
+		  reset : in std_logic;
+			
+		  opcode: in std_logic_vector(3 downto 0);
+		  pc_flag: out std_logic;
+		  pc_cond: out std_logic;
+		  ler_men: out std_logic;
+		  esc_men: out std_logic;
+		  memParaReg: out std_logic;
+		  ULAop: out std_logic_vector(3 downto 0);
+		  esc_reg: out std_logic;
+		  ula_fonteA: out std_logic;
+		  ula_fonteB: out std_logic_vector(1 downto 0);
+		  fonte_PC: out std_logic_vector(1 downto 0)
+		);
+end UniControl;
+
+architecture behavior of UniControl is
+	-- Build an enumerated type for the state machine
+	type state_type is (Free, estadoS0, estadoS1,estadoS2,
+							  estadoS3, estadoS4,estadoS5,
+						  	  estadoS6, estadoS7,estadoS8,estadoS9);		
+	-- Register to hold the current state
+	signal state : state_type;
+	signal tempState : state_type;	
+begin
+	
+	process (clock)
+	begin
+		if clock'event and clock = '1' then
+			state <= tempState;
+		end if;
+	end process;
+	
+	-- Logic to advance to the next state
+	process (state, opcode, enable)
+		-- TMP para o opcode
+		variable recv_opcode : std_logic_vector (3 downto 0);	
+	begin
+		if enable = '0' then
+			tempState <= Free;				
+			
+			-- Para o startsystem
+			    pc_flag <= 'Z';
+				pc_cond <= 'Z';
+				ler_men <= 'Z';
+				esc_men <= 'Z';
+				memParaReg <= 'Z';
+				ULAop <= "ZZZZ";
+				esc_reg <= 'Z';
+				ula_fonteA <='Z';
+				ula_fonteB <="ZZ";
+				Fonte_PC <= "ZZ";
+		else
+			
+			if (state = Free) then
+				tempState <= estadoS0;
+			end if;
+			
+			if (state = estadoS0) then
+				recv_opcode := opcode;	
+			end if;
+			
+			CASE recv_opcode is
+				when "0000" => -- comando: add;
+				 case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS6; --next state
+								
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS6 =>															
+						tempState <= estadoS7; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='1';
+						ULAop <= "0000"; -- ADD
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when estadoS7 =>															
+						tempState <= estadoS0; --next state
+							
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='0';
+						ULAop <= "0000"; -- ADD
+						esc_reg <= '1';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "0001" => -- comando: sub;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS6; --next state
+								
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS6 =>															
+						tempState <= estadoS7; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='1';
+						ULAop <= "0001"; -- SUB
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when estadoS7 =>															
+						tempState <= estadoS0; --next state
+							
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='0';
+						ULAop <= "0001"; -- SUB
+						esc_reg <= '1';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "0010" => -- comando: and;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS6; --next state
+								
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS6 =>															
+						tempState <= estadoS7; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='1';
+						ULAop <= "0010"; -- AND
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when estadoS7 =>															
+						tempState <= estadoS0; --next state
+							
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='0';
+						ULAop <= "0010"; -- AND
+						esc_reg <= '1';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "0011" => -- comando: Or;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <= "01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS6; --next state
+								
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS6 =>															
+						tempState <= estadoS7; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='1';
+						ULAop <= "0011"; -- Or
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when estadoS7 =>															
+						tempState <= estadoS0; --next state
+							
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='0';
+						ULAop <= "0011"; -- Or
+						esc_reg <= '1';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "0100" => -- comando: mult;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS6; --next state
+								
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS6 =>															
+						tempState <= estadoS7; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='1';
+						ULAop <= "0100"; -- MULT
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when estadoS7 =>															
+						tempState <= estadoS0; --next state
+							
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <='0';
+						ULAop <= "0100"; -- MULT
+						esc_reg <= '1';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+				
+				when "0101" => -- comando: beq;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS8; --next state
+							
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS8 =>																													
+						tempState <= estadoS0; --next state
+						
+						pc_flag <= '0';
+						pc_cond <= '1';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "1010";-- BEQ
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "01";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "0110" => -- comando: slt;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS8; --next state
+							
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS8 =>																													
+						tempState <= estadoS0; --next state
+						
+						pc_flag <= '0';
+						pc_cond <= '1';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "1011";-- SLT
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="00";
+						Fonte_PC <= "01";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+				
+				when "0111" => -- comando: load im;
+				    case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+								
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS2; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS2 =>															
+						tempState <= estadoS3; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0111";--LOAD IM
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="11";
+						Fonte_PC <= "00";
+					when estadoS3 =>															
+						tempState <= estadoS4; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '1';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0111";--LOAD IM
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="11";
+						Fonte_PC <= "00";
+					when estadoS4 =>															
+						tempState <= estadoS0; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0111";--LOAD IM
+						esc_reg <= '1';
+						ula_fonteA <='1';
+						ula_fonteB <="11";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "1000" => -- comando: load;
+				case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+								
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS2; --next state
+						
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS2 =>															
+						tempState <= estadoS3; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "1000";--LOAD 
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS3 =>															
+						tempState <= estadoS4; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '1';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "1000";--LOAD 
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS4 =>															
+						tempState <= estadoS0; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "1000";--LOAD 
+						esc_reg <= '1';
+						ula_fonteA <='1';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "1001" => -- comando: Store;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+							
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS2; --next state
+							
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS2 =>															
+						tempState <= estadoS5; --next state
+								
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "1001";--STORE
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS5 =>																														
+						tempState <= estadoS0; --next state
+							
+						pc_flag <= '0';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '1';
+						memParaReg <= '1';
+						ULAop <= "1001";--STORE
+						esc_reg <= '0';
+						ula_fonteA <='1';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+					
+				when "1010" => -- comando: Jump;
+					case state is
+					when estadoS0 =>															
+						tempState <= estadoS1; --next state
+							
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "00";
+					when estadoS1 =>															
+						tempState <= estadoS9; --next state
+							
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="10";
+						Fonte_PC <= "00";
+					when estadoS9 =>																													
+						tempState <= estadoS0; --next state
+							
+						pc_flag <= '1';
+						pc_cond <= '0';
+						ler_men <= '0';
+						esc_men <= '0';
+						memParaReg <= '1';
+						ULAop <= "0000";
+						esc_reg <= '0';
+						ula_fonteA <='0';
+						ula_fonteB <="01";
+						Fonte_PC <= "10";
+					when others =>
+						tempState <= estadoS0; 
+					end case;
+				when others=> -- EXIT, Opcao: XXXX ou ZZZZ
+					tempState <= estadoS0; --next state
+					
+					pc_flag <= 'Z';
+					pc_cond <= 'Z';
+					ler_men <= 'Z';
+					esc_men <= 'Z';
+					memParaReg <= 'Z';
+					ULAop <= "ZZZZ";
+					esc_reg <= 'Z';
+					ula_fonteA <='Z';
+					ula_fonteB <="ZZ";
+					Fonte_PC <= "ZZ";
+		  end case;
+		end if;	
+	end process;
+end behavior;

@@ -1,0 +1,561 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "out_SystemClock",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_reg_escrito",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_dado_escrito[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_A[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDDado_lido_B[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_lido_A[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_lido_A[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_lido_B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_BDReg_lido_B[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_entrada[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_saida[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_clock",
+					"strict" : false
+				},
+				{
+					"name" : "out_PC_HabilitaPC",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_address[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_MEM_INST_data_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_AND_A",
+					"strict" : false
+				},
+				{
+					"name" : "out_AND_B",
+					"strict" : false
+				},
+				{
+					"name" : "out_AND_Result",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_clock",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_opcode[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_opcode[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_opcode[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_opcode[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_Pc_flag",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_Pc_Cond",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_lermen",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_EscMem",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_MemParaReg",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_ULAOp[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_ULAOp[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_ULAOp[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_ULAOp[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_EscReg",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_Ula_fonteA",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_Ula_fonteB[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_Ula_fonteB[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_Fonte_Pc[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Control_Fonte_Pc[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_A[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_B[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_OP[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_OP[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_OP[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_OP[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_zero",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_ALU_result[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_ler_mem",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_esc_mem",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_address[7]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_in[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_in[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_Ram_data_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "ProIAClock",
+					"strict" : false
+				},
+				{
+					"name" : "ProIAEnableFlag",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

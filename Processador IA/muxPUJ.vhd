@@ -1,0 +1,24 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY muxPUJ IS
+PORT(dadoA: IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+     dadoB: IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+	  dadoC: IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+	  seletor: IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+	  saida: OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	  );
+END muxPUJ;
+
+ARCHITECTURE multiplexador OF muxPUJ IS
+BEGIN
+		PROCESS(seletor,dadoA,dadoB)
+		BEGIN
+			CASE seletor IS
+				WHEN "00" => saida <= dadoA;
+				WHEN "01" => saida <= dadoB;
+				WHEN "10" => saida <= dadoC;
+				WHEN others => saida <= "ZZZZZZZZ";
+			END CASE;
+	   END PROCESS;
+END multiplexador;
