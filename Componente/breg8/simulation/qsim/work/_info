@@ -1,0 +1,50 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/WizIBK inck/Desktop/ArchivreTxT/componenteTste/breg8/simulation/qsim
+vbreg8
+!s110 1516386951
+!i10b 1
+!s100 9GlV4`Td:Z;HWz992GolI2
+I8mUz5@DVTUM4ZTX8F@d[A3
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1516386946
+8breg8.vo
+Fbreg8.vo
+L0 32
+Z2 OV;L;10.4b;61
+r1
+!s85 0
+31
+!s108 1516386951.000000
+!s107 breg8.vo|
+!s90 -work|work|breg8.vo|
+!i113 1
+Z3 o-work work
+vbreg8_vlg_vec_tst
+!s110 1516386952
+!i10b 1
+!s100 Y^gl5iEz8XLL5hnf7X2]e0
+Ij0;?g2?zO`^?]3980FkQk2
+R1
+R0
+w1516386936
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 30
+R2
+r1
+!s85 0
+31
+!s108 1516386952.000000
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R3

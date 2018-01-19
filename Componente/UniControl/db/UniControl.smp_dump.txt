@@ -1,0 +1,14 @@
+
+State Machine - |UniControl|state
+Name state.estadoS9 state.estadoS8 state.estadoS7 state.estadoS6 state.estadoS5 state.estadoS4 state.estadoS3 state.estadoS2 state.estadoS1 state.estadoS0 state.Free 
+state.Free 0 0 0 0 0 0 0 0 0 0 0 
+state.estadoS0 0 0 0 0 0 0 0 0 0 1 1 
+state.estadoS1 0 0 0 0 0 0 0 0 1 0 1 
+state.estadoS2 0 0 0 0 0 0 0 1 0 0 1 
+state.estadoS3 0 0 0 0 0 0 1 0 0 0 1 
+state.estadoS4 0 0 0 0 0 1 0 0 0 0 1 
+state.estadoS5 0 0 0 0 1 0 0 0 0 0 1 
+state.estadoS6 0 0 0 1 0 0 0 0 0 0 1 
+state.estadoS7 0 0 1 0 0 0 0 0 0 0 1 
+state.estadoS8 0 1 0 0 0 0 0 0 0 0 1 
+state.estadoS9 1 0 0 0 0 0 0 0 0 0 1 

@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Fri Jan 12 19:46:48 2018
+Analysis & Synthesis Status : Successful - Fri Jan 19 13:22:10 2018
 Quartus Prime Version : 15.1.0 Build 185 10/21/2015 SJ Lite Edition
 Revision Name : ProIA
 Top-level Entity Name : ProIA
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 137
+Total registers : 121
 Total pins : 145
 Total virtual pins : 0
 Total block memory bits : 0

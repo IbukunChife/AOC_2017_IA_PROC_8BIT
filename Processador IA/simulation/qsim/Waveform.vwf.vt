@@ -19,7 +19,7 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "01/13/2018 11:29:31"
+// Generated on "01/19/2018 13:29:42"
                                                                                 
 // Verilog Test Bench (with test vectors) for design :                          ProIA
 // 
@@ -120,22 +120,15 @@ ProIA i1 (
 );
 initial 
 begin 
-#25000 $finish;
+#50000 $finish;
 end 
 
 // ProIAClock
-initial
+always
 begin
-	ProIAClock = 1'b1;
-	ProIAClock = #1000 1'b0;
-	# 1000;
-	repeat(11)
-	begin
-		ProIAClock = 1'b1;
-		ProIAClock = #1000 1'b0;
-		# 1000;
-	end
-	ProIAClock = 1'b1;
+	ProIAClock = 1'b0;
+	ProIAClock = #1000 1'b1;
+	#1000;
 end 
 
 // ProIAEnableFlag
@@ -147,7 +140,7 @@ end
 // ProIAreset
 initial
 begin
-	ProIAreset = 1'b0;
+	ProIAreset = 1'bX;
 end 
 endmodule
 

@@ -1,0 +1,81 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "saidaPC[0]",
+					"strict" : false
+				},
+				{
+					"name" : "saidaPC[1]",
+					"strict" : false
+				},
+				{
+					"name" : "saidaPC[2]",
+					"strict" : false
+				},
+				{
+					"name" : "saidaPC[3]",
+					"strict" : false
+				},
+				{
+					"name" : "saidaPC[4]",
+					"strict" : false
+				},
+				{
+					"name" : "saidaPC[5]",
+					"strict" : false
+				},
+				{
+					"name" : "saidaPC[6]",
+					"strict" : false
+				},
+				{
+					"name" : "saidaPC[7]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[0]",
+					"strict" : false
+				},
+				{
+					"name" : "habilitaPC",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[1]",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[2]",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[3]",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[4]",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[5]",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[6]",
+					"strict" : false
+				},
+				{
+					"name" : "entradaPC[7]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

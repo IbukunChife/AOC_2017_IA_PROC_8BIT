@@ -2,30 +2,30 @@
 # ** Warning: (vlib-34) Library already exists at "work".
 # 
 # Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
-# Start time: 11:30:02 on Jan 13,2018
+# Start time: 13:29:59 on Jan 19,2018
 # vlog -work work ProIA.vo 
 # -- Compiling module ProIA
 # 
 # Top level modules:
 # 	ProIA
-# End time: 11:30:03 on Jan 13,2018, Elapsed time: 0:00:01
+# End time: 13:29:59 on Jan 19,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
-# Start time: 11:30:04 on Jan 13,2018
+# Start time: 13:30:00 on Jan 19,2018
 # vlog -work work Waveform.vwf.vt 
 # -- Compiling module ProIA_vlg_vec_tst
 # 
 # Top level modules:
 # 	ProIA_vlg_vec_tst
-# End time: 11:30:04 on Jan 13,2018, Elapsed time: 0:00:00
+# End time: 13:30:00 on Jan 19,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.ProIA_vlg_vec_tst -voptargs=""+acc"" 
-# Start time: 11:30:09 on Jan 13,2018
+# Start time: 13:30:01 on Jan 19,2018
 # Loading work.ProIA_vlg_vec_tst
 # Loading work.ProIA
 # Loading altera_ver.dffeas
 # Loading altera_ver.PRIM_GDFF_LOW
 # ** Note: $finish    : Waveform.vwf.vt(123)
-#    Time: 25 ns  Iteration: 0  Instance: /ProIA_vlg_vec_tst
-# End time: 11:30:12 on Jan 13,2018, Elapsed time: 0:00:03
+#    Time: 50 ns  Iteration: 0  Instance: /ProIA_vlg_vec_tst
+# End time: 13:30:04 on Jan 19,2018, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0

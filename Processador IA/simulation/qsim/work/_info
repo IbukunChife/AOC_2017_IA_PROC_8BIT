@@ -7,15 +7,15 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/WizIBK inck/Desktop/Processador/simulation/qsim
+dC:/Users/WizIBK inck/Desktop/Processador/simulation/qsim
 vProIA
-!s110 1515857403
+!s110 1516382999
 !i10b 1
-!s100 XAimbf24Q4>a;oIQLS:Wb3
-I0`eca1lWz`Q8=c<T@YzbI3
-Z1 VDg1SIo80bB@j0V0VzS_@n1
-R0
-w1515857387
+!s100 Z1GSj1OMEMaKb0LPUC;<a0
+I<J8A_@5df8OVzm:hfRAah3
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/WizIBK inck/Desktop/ArchivreTxT/componenteTste/Processador IA/simulation/qsim
+w1516382994
 8ProIA.vo
 FProIA.vo
 L0 32
@@ -23,20 +23,20 @@ Z2 OV;L;10.4b;61
 r1
 !s85 0
 31
-!s108 1515857402.000000
+!s108 1516382999.000000
 !s107 ProIA.vo|
 !s90 -work|work|ProIA.vo|
 !i113 1
 Z3 o-work work
 n@pro@i@a
 vProIA_vlg_vec_tst
-!s110 1515857404
+!s110 1516383000
 !i10b 1
-!s100 odVi1`z@a5aGHjIBa5AzL3
-IimLYS36e43Jb4>0U54JAZ3
-R1
+!s100 N0I@Gk?5[[3M^Dn@S1_gR3
+I8UMd5?6;SX?Fb]ib2XgVa2
 R0
-w1515857374
+R1
+w1516382983
 8Waveform.vwf.vt
 FWaveform.vwf.vt
 L0 30
@@ -44,7 +44,7 @@ R2
 r1
 !s85 0
 31
-!s108 1515857404.000000
+!s108 1516383000.000000
 !s107 Waveform.vwf.vt|
 !s90 -work|work|Waveform.vwf.vt|
 !i113 1

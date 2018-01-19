@@ -1,0 +1,31 @@
+# do ram8.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+# Start time: 14:13:57 on Jan 19,2018
+# vlog -work work ram8.vo 
+# -- Compiling module ram8
+# 
+# Top level modules:
+# 	ram8
+# End time: 14:13:57 on Jan 19,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim ALTERA vlog 10.4b Compiler 2015.05 May 27 2015
+# Start time: 14:13:58 on Jan 19,2018
+# vlog -work work Waveform.vwf.vt 
+# -- Compiling module ram8_vlg_vec_tst
+# 
+# Top level modules:
+# 	ram8_vlg_vec_tst
+# End time: 14:13:58 on Jan 19,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.ram8_vlg_vec_tst -voptargs=""+acc"" 
+# Start time: 14:13:59 on Jan 19,2018
+# Loading work.ram8_vlg_vec_tst
+# Loading work.ram8
+# Loading altera_ver.dffeas
+# Loading altera_ver.PRIM_GDFF_LOW
+# ** Note: $finish    : Waveform.vwf.vt(53)
+#    Time: 16 ns  Iteration: 0  Instance: /ram8_vlg_vec_tst
+# End time: 14:14:01 on Jan 19,2018, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

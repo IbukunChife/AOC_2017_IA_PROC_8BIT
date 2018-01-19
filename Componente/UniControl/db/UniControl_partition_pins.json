@@ -1,0 +1,93 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "pc_flag",
+					"strict" : false
+				},
+				{
+					"name" : "pc_cond",
+					"strict" : false
+				},
+				{
+					"name" : "ler_men",
+					"strict" : false
+				},
+				{
+					"name" : "esc_men",
+					"strict" : false
+				},
+				{
+					"name" : "memParaReg",
+					"strict" : false
+				},
+				{
+					"name" : "ULAop[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ULAop[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ULAop[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ULAop[3]",
+					"strict" : false
+				},
+				{
+					"name" : "esc_reg",
+					"strict" : false
+				},
+				{
+					"name" : "ula_fonteA",
+					"strict" : false
+				},
+				{
+					"name" : "ula_fonteB[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ula_fonteB[1]",
+					"strict" : false
+				},
+				{
+					"name" : "fonte_PC[0]",
+					"strict" : false
+				},
+				{
+					"name" : "fonte_PC[1]",
+					"strict" : false
+				},
+				{
+					"name" : "opcode[3]",
+					"strict" : false
+				},
+				{
+					"name" : "opcode[2]",
+					"strict" : false
+				},
+				{
+					"name" : "opcode[1]",
+					"strict" : false
+				},
+				{
+					"name" : "opcode[0]",
+					"strict" : false
+				},
+				{
+					"name" : "enable",
+					"strict" : false
+				},
+				{
+					"name" : "clock",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
